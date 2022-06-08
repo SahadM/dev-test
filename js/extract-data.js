@@ -1,13 +1,17 @@
 class ExtractData{
 
     constructor () {
+        // url ressource
         this.url = 'https://covid19.mathdro.id/api';
-
+        
+        // format numbers
         this.intl = new Intl.NumberFormat();
 
+        // methods
         this.getNumberOfConfirmedCase();
         this.getPicturesResensedCases();
 
+        // event update data on click
         $('.maj').on('click', (e) => {
             e.preventDefault();
             
@@ -28,7 +32,9 @@ class ExtractData{
     }
 
     getNumberOfConfirmedCase (country = 'FR') {
-        $.get(this.url + '/confirmed', (response) => {
+        let _self = this;
+        
+        $.get(_self.url + '/confirmed', (response) => {
             // get data
             let data = response || []; 
             let number_case = 0, number_case_fr = 0;
@@ -42,24 +48,26 @@ class ExtractData{
                 }                
             });
             // display
-            $('#france').html(`Il y a <strong>${this.intl.format(number_case_fr)}</strong> cas`);
-            $('#monde').html(`Il y a <strong>${this.intl.format(number_case)}</strong> cas`);
+            $('#france').html(`Il y a <strong>${_self.intl.format(number_case_fr)}</strong> cas`);
+            $('#monde').html(`Il y a <strong>${_self.intl.format(number_case)}</strong> cas`);
 
         }).fail((err) => {
-            console.error('Attention : Pas de données disponible !')
+            console.error('Attention : Pas de données disponible, e :', err);
         });
 
     }
 
     getPicturesResensedCases () {
-        $.ajax(this.url + '/og', (response) => {
-            let pictures = response || '';
-            $('#resenses').text(pictures);
-        }, 'html').fail((err) => {
-            console.error('Attention : Pas de données disponible !')
+        let _self = this;
+
+        $.get(_self.url + '/og', (response) => {
+            let picture = response || '';          
+            $('#resenses').html(picture);
+            // NOTE : Récupérer l'image via ajax et ré-injecter dans une balise <img>
+
+        }, 'blob').fail((err) => {
+            console.error('Attention : Pas de données disponible !, e :', err);
         });
-
-
     }
 
 }
