@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>test</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+   
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+        <div class="container">
+            <!-- Logo and responsive toggle -->
+            <div class="navbar-header">           
+                <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-globe"></span>Décomptes de cas COVID</a>
+            </div>
+      
+        </div>
+
+    </nav>
+
+	<div class="container-fluid">
+	
+		<div class="row">
+			<article class="col-xs-12">
+				<h2>Nombre de cas confirmés dans le monde</h2>
+				<p id="monde"></p>
+				<p><button class="maj btn btn-default" data-type="monde">Mettre à jour les données</button></p>
+			</article>
+		</div>
+
+		<div class="row">
+			<article class="col-xs-12">
+				<h2>Nombre de cas confirmés en France</h2>
+				<p id="france"></p>
+				<p><button class="maj btn btn-default" data-type="france">Mettre à jour les données</button></p>
+			</article>
+		</div>
+
+		<div class="row">
+			<article class="col-xs-12">
+				<h2>Cas resensés</h2>
+				<p id="resenses"></p>
+				<p><button class="maj btn btn-default" data-type="resenses">Mettre à jour les données</button></p>
+			</article>
+		</div>
+
+	</div>
+	
+	<footer>		
+        <div class="small-print">
+        	<div class="container text-center">
+        		<p>Copyright &copy; test 2022 </p>
+        	</div>
+        </div>
+	</footer>
+
+	
+    <!-- jQuery -->
+    <script src="js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="js/extract-data.js"></script>
+  	<script type="text/javascript">
+	   new ExtractData();
+    </script>
+	
+	
+</body>
+
+</html>
